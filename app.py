@@ -45,6 +45,7 @@ def index():
     # Do something with the objects...
 
     result = get_similarity_reco(query,ldamodel,dictionary,corpus,5)
+    
     results_final = data.iloc[result]
     name = results_final['name']
     nameNew = ',' .join((z for z in name if not z.isdigit()))
