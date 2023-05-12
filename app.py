@@ -5,7 +5,6 @@ import numpy as np
 import random
 from gensim import similarities
 
-
 app=Flask(__name__)
 
 @app.route('/recommendation', methods=['POST'])
@@ -109,8 +108,6 @@ def get_similarity_reco (query,ldamodel,dct,corpus,n_reco):
 
 if __name__ == '__main__':
     # Start the Flask application
-    from waitress import serve
-    serve(app, host="0.0.0.0", port=8080)
- 
+    app.run(debug=True)
 
 # index()
