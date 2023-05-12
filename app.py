@@ -1,14 +1,9 @@
-import json
 import pandas as pd
 from flask import Flask, render_template, jsonify, request
 from flask_restful import Api,Resource
-import pymongo
 import pickle
 import numpy as np
-import gensim
 import random
-import re
-import spacy
 
 from sklearn.feature_extraction.text import CountVectorizer
 from spacy.lang.en import English
@@ -20,29 +15,16 @@ app=Flask(__name__)
 @app.route('/recommendation', methods=['POST'])
 def index():
     data = pd.read_csv('Nutrition2Acopy.csv')
-    # myclient = pymongo.MongoClient('mongodb+srv://fitcalrie:fitcalrie@cluster0.4cpyw9d.mongodb.net/?retryWrites=true&w=majority')
-    # mydb = myclient["Fitcalrie"]
-    # data = mydb["nutritions"]
     regex = r'\d+'
-    # ingredients = []
-    # for x in data.find():
-    #     ingredients.append(x['ingredients'].split(','))
 
     nutrition = request.json
     query = nutrition['food']
-    # print(query)
-    # query = 'wide_rice_noodle,pork, eggs, sugar, peper, garlic, kale, oil, soy sauce,oyster sauce, baking powder'
 
     ldamodel = load_file_from_pickle('lda_40.obj')
-    # print(ldamodel)
-    # print("----------------------------------")
+
     dictionary = load_file_from_pickle('lda_40_dct.obj')
-    # print(dictionary)
-    # print("----------------------------------")
+
     corpus = load_file_from_pickle('lda_40_corp.obj')
-    # print(corpus)
-    # print("----------------------------------")
-    # Do something with the objects...
 
     result = get_similarity_reco(query,ldamodel,dictionary,corpus,5)
     
