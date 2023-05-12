@@ -1,14 +1,9 @@
 import pandas as pd
-from flask import Flask, render_template, jsonify, request
-from flask_restful import Api,Resource
+from flask import Flask, jsonify, request
 import pickle
 import numpy as np
 import random
-
-from sklearn.feature_extraction.text import CountVectorizer
-from spacy.lang.en import English
-from gensim import models, similarities
-
+from gensim import similarities
 
 app=Flask(__name__)
 
@@ -19,7 +14,7 @@ def index():
 
     nutrition = request.json
     query = nutrition['food']
-
+   
     ldamodel = load_file_from_pickle('lda_40.obj')
 
     dictionary = load_file_from_pickle('lda_40_dct.obj')
