@@ -4,6 +4,7 @@ import pickle
 import numpy as np
 import random
 from gensim import similarities
+from jinja2 import escape
 
 app=Flask(__name__)
 
