@@ -5,6 +5,8 @@ import numpy as np
 import random
 from gensim import similarities
 from jinja2 import escape
+from . import json
+from itsdangerous import json as _json
 
 app=Flask(__name__)
 
