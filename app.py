@@ -31,6 +31,12 @@ def index():
    
     return jsonify({'data':nameNew})
 
+@app.route('/', methods=['GET'])
+def hello():
+    return "hello world"
+
+
+
 def load_file_from_pickle(file_path):
     with open(file_path, 'rb') as file:
         item = pickle.load(file)
