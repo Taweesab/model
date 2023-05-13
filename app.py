@@ -108,6 +108,7 @@ def get_similarity_reco (query,ldamodel,dct,corpus,n_reco):
 
 if __name__ == '__main__':
     # Start the Flask application
-    app.run(debug=True)
+    from waitress import serve
+    serve(app, host="0.0.0.0", port=8080)
 
 # index()
