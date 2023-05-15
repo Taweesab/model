@@ -142,6 +142,4 @@ wrapt==1.12.1
 wsproto==1.2.0
 y-py==0.5.9
 ypy-websocket==0.8.2
-gunicorn==20.1.0
 waitress==2.1.2
-gevent==1.5.0 

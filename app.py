@@ -4,7 +4,6 @@ import pickle
 import numpy as np
 import random
 from gensim import similarities
-from gevent.pywsgi import WSGIServer
 
 app=Flask(__name__)
 
@@ -109,5 +108,5 @@ def get_similarity_reco (query,ldamodel,dct,corpus,n_reco):
 
 if __name__ == '__main__':
     # Start the Flask application
-    http_server = WSGIServer(('0.0.0.0', 8000), app)
-    http_server.serve_forever()
+    from waitress import serve
+    serve(app, host="0.0.0.0", port=8080)
