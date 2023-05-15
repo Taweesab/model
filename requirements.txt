@@ -145,5 +145,3 @@ ypy-websocket==0.8.2
 gunicorn==20.1.0
 waitress==2.1.2
 gevent==1.5.0 
-geventhttpclient==1.5.1 
-gevent.pywsgi==0.7.0
