@@ -4,12 +4,13 @@ import pickle
 import numpy as np
 import random
 from gensim import similarities
+import pymongo
 
 app=Flask(__name__)
 
 @app.route('/recommendation', methods=['POST'])
 def index():
-    data = pd.read_csv('Nutrition2Acopy.csv')
+    data = pd.read_csv('Nutrition.csv')
     regex = r'\d+'
 
     nutrition = request.json
@@ -24,7 +25,7 @@ def index():
     result = get_similarity_reco(query,ldamodel,dictionary,corpus,5)
     
     results_final = data.iloc[result]
-    name = results_final['name']
+    name = results_final['name'].replace(",", "")
     nameNew = ',' .join((z for z in name if not z.isdigit()))
 
     print(nameNew)
@@ -108,5 +109,4 @@ def get_similarity_reco (query,ldamodel,dct,corpus,n_reco):
 
 if __name__ == '__main__':
     # Start the Flask application
-    from waitress import serve
-    serve(app, port=8080)
+  app.run(debug=True)
